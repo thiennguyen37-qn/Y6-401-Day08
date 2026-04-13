@@ -421,7 +421,7 @@ def call_llm(prompt: str) -> str | None:
         return model.generate_content(prompt).text
     else:
         from openai import OpenAI
-        client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://models.inference.ai.azure.com/")
+        client = OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
             model=LLM_MODEL,
             messages=[{"role": "user", "content": prompt}],
