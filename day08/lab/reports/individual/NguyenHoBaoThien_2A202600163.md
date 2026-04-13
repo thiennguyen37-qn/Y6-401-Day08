@@ -53,12 +53,12 @@ _________________
 > - Lỗi nằm ở đâu: indexing / retrieval / generation?
 > - Variant có cải thiện không? Tại sao có/không?
 
-**Câu hỏi:** "q06 - Escalation trong sự cố P1 diễn ra như thế nào?"
+**Câu hỏi:** "q10 - Nếu cần hoàn tiền khẩn cấp cho khách hàng VIP, quy trình có khác không?"
 
 **Phân tích:**
-Ở phiên bản Baseline, mô hình xử lý tương đối tốt khi các chỉ số Faithfulness, Relevance và Context Recall đều đạt tối đa (5/5). Điều này chứng tỏ nó tìm đúng tài liệu trọng tâm và không bịa đặt thông tin. Tuy nhiên, điểm Completeness chỉ đạt 4/5, nghĩa là câu trả lời vẫn bị thiếu một chi tiết nhỏ so với đáp án chuẩn.
-Nguyên nhân: dùng dense search và top k select (3) quá nhỏ khiến hệ thống đã cắt bỏ mất chunk chứa tiểu tiết phụ.
-Variant đã cải thiện completeness lên 5/5. Nguyên nhân là chiến lược tìm kiếm đã đổi từ dense sang hybrid, cùng với việc nới rộng top_k_select lên 7 đã mở rộng "tầm nhìn" của mô hình. Nhờ có bộ ngữ cảnh dồi dào và đầy đủ hơn, khâu generation đã sinh ra được một câu trả lời bao phủ toàn bộ các góc cạnh của vấn đề.
+Ở Baseline, điểm Context Recall đạt tối đa (5/5) cho thấy hệ thống có lấy được đúng tài liệu chuẩn. Tuy nhiên, Answer Relevance lại chạm đáy (1/5) và Completeness cực thấp (2/5). Lỗi ở đây nằm ở sự chênh lệch giữa khâu retrieval và generation. Do chỉ dùng dense search, hệ thống kéo về các chunk có ý nghĩa tương đồng nhưng lại thiếu đi từ khóa quyết định để trả lời đúng câu hỏi. Hậu quả là khi đưa 3 chunks này cho LLM, nó sinh ra một câu trả lời hoàn toàn lạc đề.
+
+Ở phiên bản Variant, điểm số đạt mức tuyệt đối. Sự cải thiện vượt bậc này nhờ vào việc đổi sang Hybrid Search. Tính năng tìm kiếm từ khóa đã khắc phục nhược điểm "trôi dạt ngữ nghĩa" của dense search, giúp hệ thống gắp chính xác đoạn văn có chứa câu trả lời trực tiếp. Bên cạnh đó, việc nới rộng top_k_search lên 15 và đưa cho LLM nhiều ngữ cảnh hơn (top_k_select từ 3 lên 5) đã giúp cho mô hình sinh ra một câu trả lời vừa đi thẳng vào trọng tâm vừa đầy đủ trọn vẹn mọi khía cạnh.
 
 _________________
 
