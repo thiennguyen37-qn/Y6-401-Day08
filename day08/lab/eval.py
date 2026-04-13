@@ -96,7 +96,7 @@ def score_faithfulness(
 
     # 3. Gọi LLM để chấm điểm tự động
     try:
-        client = OpenAI(api_key=OPENAI_API_KEY)
+        client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://models.inference.ai.azure.com/")
         response = client.chat.completions.create(
             model=JUDGE_MODEL,
             messages=[
@@ -161,7 +161,7 @@ def score_answer_relevance(
 
     # 2. Gọi LLM để chấm điểm tự động
     try:
-        client = OpenAI(api_key=OPENAI_API_KEY)
+        client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://models.inference.ai.azure.com/")
         response = client.chat.completions.create(
             model=JUDGE_MODEL,
             messages=[
@@ -314,7 +314,7 @@ def score_completeness(
 
     # 2. Gọi LLM để chấm điểm tự động
     try:
-        client = OpenAI(api_key=OPENAI_API_KEY)
+        client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://models.inference.ai.azure.com/")
         response = client.chat.completions.create(
             model=JUDGE_MODEL,
             messages=[
