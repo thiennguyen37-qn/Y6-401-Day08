@@ -9,7 +9,7 @@
 
 ## 1. Tôi đã làm gì trong lab này? (100-150 từ)
 
-Trong Lab 08, tôi đảm nhận vai trò Tech Lead và Retrieval Owner, chủ yếu phụ trách Sprint 2 và Sprint 3 liên quan đến truy xuất dữ liệu từ Vector Database. Chi tiết bao gồm: 
+Trong Lab 08, tôi đảm nhận vai trò Retrieval Owner, chủ yếu phụ trách Sprint 2 liên quan đến truy xuất dữ liệu từ Vector Database. Chi tiết bao gồm: 
 - Thiết lập và thử nghiệm phương pháp Dense Retrieval bằng ChromaDB sử dụng vector similarity. 
 - Mở rộng kiến trúc thành Hybrid Retrieval: Triển khai thuật toán tìm kiếm Sparse bằng thư viện `rank_bm25` (phân tích keyword) và kết hợp với Dense qua cơ chế chấm điểm chéo Reciprocal Rank Fusion (RRF). 
 - Triển khai cross-encoder Re-ranking để nâng cao độ chính xác (Precision) cho Top K chunks thu được. 
